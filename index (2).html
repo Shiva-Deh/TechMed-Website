@@ -97,6 +97,7 @@ nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-f
 .sponsors{background:var(--white);text-align:center}
 .sponsors p.sub{color:var(--muted);max-width:38rem;margin:0 auto 2.5rem}
 .sponsor-cta{background:var(--navy);color:#fff;border-radius:var(--radius);padding:3rem 2rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.sponsor-form{background:transparent;box-shadow:none;padding:0;width:min(560px,100%);text-align:left;margin-top:.5rem}
 .sponsor-cta h3{font-size:1.5rem}
 .sponsor-cta p{color:#C9DAF3;max-width:34rem}
 
@@ -245,8 +246,29 @@ footer li{margin-bottom:.55rem}
     <p class="sub">We're just getting started, and we're looking for organizations that believe accessible health technology matters.</p>
     <div class="sponsor-cta">
       <h3>Interested in sponsoring TechMed?</h3>
-      <p>Support an early-stage health-tech project and put your brand behind accessible, AI-powered patient education. We'd love to talk.</p>
-      <a class="btn btn-light" href="#join">Fill out the sponsorship form</a>
+      <p>Support an early-stage health-tech project and put your brand behind accessible, AI-powered patient education. Fill out the form below and we'll get in touch.</p>
+      <form class="sponsor-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="form_type" value="Sponsorship">
+        <input type="hidden" name="_subject" value="New TechMed SPONSORSHIP inquiry">
+        <div class="field">
+          <label for="s-org" style="color:#fff">Organization name</label>
+          <input id="s-org" type="text" name="organization" required placeholder="Acme Health Inc.">
+        </div>
+        <div class="field">
+          <label for="s-name" style="color:#fff">Contact person</label>
+          <input id="s-name" type="text" name="name" required placeholder="Jane Doe">
+        </div>
+        <div class="field">
+          <label for="s-email" style="color:#fff">Work email</label>
+          <input id="s-email" type="email" name="email" required placeholder="jane@acmehealth.com">
+        </div>
+        <div class="field">
+          <label for="s-message" style="color:#fff">How would you like to support TechMed?</label>
+          <textarea id="s-message" name="message" placeholder="Funding, mentorship, tools, partnership…"></textarea>
+        </div>
+        <button class="btn btn-light" type="submit" style="width:100%">Send sponsorship inquiry</button>
+        <p class="form-note" style="color:#C9DAF3">Your information is stored privately and is only accessible to the TechMed team.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -257,12 +279,14 @@ footer li{margin-bottom:.55rem}
     <div>
       <span class="eyebrow">Get involved</span>
       <h2>Want to be part of TechMed?</h2>
-      <p>Whether you want to join as a member, volunteer, or sponsor TechMed, this is the place. Fill out the form and we'll get back to you.</p>
+      <p>Whether you code, design, write, research, or just care about making healthcare easier to understand, there's a place for you. Fill out the form and we'll get back to you.</p>
       <p><strong>What happens next?</strong> Your submission is saved securely in our system, only the TechMed team can see it, and we'll reach out with next steps.</p>
     </div>
 
-    <!-- Replace YOUR_FORM_ID after creating a free form at formspree.io -->
+    <!-- Replace mnjkkazp after creating a free form at formspree.io -->
     <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="hidden" name="form_type" value="Membership">
+      <input type="hidden" name="_subject" value="New TechMed MEMBERSHIP application">
       <div class="field">
         <label for="name">Full name</label>
         <input id="name" type="text" name="name" required placeholder="Jane Doe">
@@ -279,7 +303,6 @@ footer li{margin-bottom:.55rem}
           <option>Become a member (design / content)</option>
           <option>Become a member (health / research)</option>
           <option>Volunteer / general help</option>
-          <option>Sponsorship</option>
           <option>Something else</option>
         </select>
       </div>
@@ -287,7 +310,7 @@ footer li{margin-bottom:.55rem}
         <label for="message">Tell us a bit about yourself</label>
         <textarea id="message" name="message" placeholder="Skills, interests, why TechMed…"></textarea>
       </div>
-      <button class="btn btn-primary" type="submit" style="width:100%">Send my application</button>
+      <button class="btn btn-primary" type="submit" style="width:100%">Send membership application</button>
       <p class="form-note">Your information is stored privately and is only accessible to the TechMed team.</p>
     </form>
   </div>
