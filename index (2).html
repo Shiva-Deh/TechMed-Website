@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TechMed — AI-powered symptom checking</title>
+<meta name="description" content="TechMed is building an accessible, AI-powered symptom checker that helps patients understand their health concerns. Join the team or become a sponsor." />
+<link rel="icon" type="image/png" href="techmed-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1C3E6E;         /* logo disc blue */
+  --blue:#2E6FD8;         /* action blue */
+  --sky:#7FB3F0;          /* soft accent */
+  --tint:#EAF2FC;         /* pale blue section bg */
+  --white:#FFFFFF;
+  --ink:#0E1B2E;          /* near-navy text */
+  --muted:#5A6B85;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(28,62,110,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.15}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+.container{width:min(1100px,92%);margin:0 auto}
+.eyebrow{display:inline-block;font:600 .78rem 'Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:var(--tint);padding:.35rem .8rem;border-radius:999px;margin-bottom:1rem}
+section{padding:5.5rem 0}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--tint)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--navy);font:700 1.15rem 'Poppins',sans-serif}
+.brand img{width:38px;height:38px;border-radius:50%}
+.nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--ink);font-weight:500;font-size:.95rem}
+.nav-links a:hover{color:var(--blue)}
+.btn{display:inline-block;font:600 .95rem 'Poppins',sans-serif;padding:.75rem 1.5rem;border-radius:999px;text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;border:2px solid transparent;cursor:pointer}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(46,111,216,.35)}
+.btn-outline{border-color:var(--navy);color:var(--navy);background:transparent}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.btn-light{background:#fff;color:var(--navy)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.menu-btn{display:none;background:none;border:0;font-size:1.6rem;color:var(--navy);cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(115deg,var(--navy) 0%,#24549A 46%,var(--blue) 62%,var(--sky) 82%,var(--white) 100%);color:#fff;padding:6.5rem 0 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:800;margin:.4rem 0 1.2rem}
+.hero h1 span{color:#CDE1FB}
+.hero p.lead{font-size:1.15rem;color:#DCE9FA;max-width:34rem;margin-bottom:2rem}
+.hero .eyebrow{background:rgba(255,255,255,.15);color:#fff}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-logo{justify-self:center;background:#fff;border-radius:50%;padding:14px;box-shadow:0 20px 50px rgba(9,25,50,.45);width:min(300px,70vw)}
+.hero-logo img{border-radius:50%}
+/* ECG signature line */
+.ecg-wrap{margin-top:4.5rem;background:transparent}
+.ecg{display:block;width:100%;height:70px}
+.ecg path{fill:none;stroke:#fff;stroke-width:2.5;opacity:.9;stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw 3.2s ease forwards .3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){
+  .ecg path{animation:none;stroke-dashoffset:0}
+  .btn,.card{transition:none!important}
+}
+
+/* ---------- stats strip ---------- */
+.stats{background:var(--white);padding:2.6rem 0;border-bottom:1px solid var(--tint)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center}
+.stat b{display:block;font:800 2rem 'Poppins',sans-serif;color:var(--navy)}
+.stat span{color:var(--muted);font-size:.92rem}
+
+/* ---------- about ---------- */
+.about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.about h2,.pillars h2,.sponsors h2,.join h2,.faq h2{font-size:clamp(1.8rem,3.4vw,2.5rem);color:var(--navy);margin-bottom:1rem}
+.about p{color:var(--muted);margin-bottom:1rem}
+.about-card{background:var(--tint);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
+.about-card ul{list-style:none}
+.about-card li{padding:.55rem 0 .55rem 2rem;position:relative;font-weight:500}
+.about-card li::before{content:"＋";position:absolute;left:0;top:.5rem;color:var(--blue);font-weight:800}
+
+/* ---------- pillars ---------- */
+.pillars{background:var(--tint)}
+.pillars .head{text-align:center;max-width:44rem;margin:0 auto 3rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);border-top:4px solid var(--blue)}
+.card .icon{width:48px;height:48px;border-radius:12px;background:var(--tint);display:grid;place-items:center;font-size:1.4rem;margin-bottom:1rem}
+.card h3{color:var(--navy);font-size:1.1rem;margin-bottom:.5rem}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* ---------- sponsors ---------- */
+.sponsors{background:var(--white);text-align:center}
+.sponsors p.sub{color:var(--muted);max-width:38rem;margin:0 auto 2.5rem}
+.sponsor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-bottom:2.5rem}
+.sponsor-slot{border:2px dashed var(--sky);border-radius:var(--radius);padding:2.2rem 1rem;color:var(--sky);font:600 .9rem 'Poppins',sans-serif;background:linear-gradient(180deg,#fff, #F6FAFF)}
+.sponsor-cta{background:var(--navy);color:#fff;border-radius:var(--radius);padding:3rem 2rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem}
+.sponsor-cta h3{font-size:1.5rem}
+.sponsor-cta p{color:#C9DAF3;max-width:34rem}
+
+/* ---------- join form ---------- */
+.join{background:linear-gradient(180deg,var(--tint), var(--white))}
+.join-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:start}
+.join p{color:var(--muted);margin-bottom:1rem}
+form{background:#fff;border-radius:var(--radius);padding:2.2rem;box-shadow:var(--shadow)}
+.field{margin-bottom:1.2rem}
+label{display:block;font-weight:600;font-size:.92rem;margin-bottom:.4rem;color:var(--navy)}
+input,select,textarea{width:100%;padding:.8rem .95rem;border:1.5px solid #D6E2F2;border-radius:10px;font:400 1rem 'Inter',sans-serif;color:var(--ink);background:#FBFDFF}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,111,216,.15)}
+textarea{resize:vertical;min-height:110px}
+.form-note{font-size:.85rem;color:var(--muted);margin-top:.8rem}
+
+/* ---------- faq ---------- */
+.faq{background:var(--white)}
+.faq .head{text-align:center;margin-bottom:2.5rem}
+details{border:1.5px solid var(--tint);border-radius:12px;margin-bottom:.8rem;background:#fff;max-width:46rem;margin-left:auto;margin-right:auto}
+summary{cursor:pointer;font:600 1rem 'Poppins',sans-serif;color:var(--navy);padding:1.1rem 1.3rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:1.3rem;color:var(--blue)}
+details[open] summary::after{content:"–"}
+details div{padding:0 1.3rem 1.2rem;color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{background:var(--navy);color:#C9DAF3;padding:3.5rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+footer h4{color:#fff;font:600 1rem 'Poppins',sans-serif;margin-bottom:1rem}
+footer a{color:#C9DAF3;text-decoration:none}
+footer a:hover{color:#fff;text-decoration:underline}
+footer ul{list-style:none}
+footer li{margin-bottom:.55rem}
+.footer-brand{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.footer-brand img{width:44px;height:44px;border-radius:50%;background:#fff}
+.footer-brand span{font:700 1.2rem 'Poppins',sans-serif;color:#fff}
+.copyright{border-top:1px solid rgba(255,255,255,.15);padding-top:1.4rem;text-align:center;font-size:.85rem;color:#9DB4D6}
+
+/* ---------- responsive ---------- */
+@media(max-width:880px){
+  .hero-grid,.about-grid,.join-grid{grid-template-columns:1fr}
+  .hero-logo{width:min(230px,60vw);order:-1}
+  .cards{grid-template-columns:1fr}
+  .sponsor-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:1fr;gap:1.6rem}
+  .footer-grid{grid-template-columns:1fr}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:1.2rem;gap:1.1rem;border-bottom:1px solid var(--tint);box-shadow:var(--shadow)}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="container nav-inner">
+    <a class="brand" href="#top"><img src="techmed-logo.png" alt="TechMed logo">TechMed</a>
+    <button class="menu-btn" aria-label="Open menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#what-we-do">What we do</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="btn btn-primary" href="#join">Get involved</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">AI · Health · Accessibility</span>
+      <h1>Understand your health, <span>before the waiting room.</span></h1>
+      <p class="lead">TechMed is building an accessible, AI-powered symptom checker that helps patients better understand their health concerns — and arrive at appointments informed.</p>
+      <div class="hero-cta">
+        <a class="btn btn-light" href="#join">Become a member</a>
+        <a class="btn btn-outline" style="border-color:#fff;color:#fff" href="#sponsors">Sponsor us</a>
+      </div>
+    </div>
+    <div class="hero-logo"><img src="techmed-logo.png" alt="TechMed circular logo — a medical cross with circuit traces"></div>
+  </div>
+  <div class="ecg-wrap" aria-hidden="true">
+    <svg class="ecg" viewBox="0 0 1200 70" preserveAspectRatio="none">
+      <path d="M0,40 H260 l14,-9 14,9 H420 l10,-26 14,44 12,-18 H760 l14,-9 14,9 H940 l10,-26 14,44 12,-18 H1200"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><b>1</b><span>mission: accessible health guidance</span></div>
+    <div class="stat"><b>3</b><span>pillars: describe · analyze · understand</span></div>
+    <div class="stat"><b>∞</b><span>better-informed conversations with doctors</span></div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow">About TechMed</span>
+      <h2>Health concerns shouldn't be confusing.</h2>
+      <p>TechMed is an accessible, AI-powered symptom-checking application that helps patients better understand their health concerns. It guides users to describe, analyze, and understand their symptoms end-to-end, producing clear insights they can discuss with a healthcare provider.</p>
+      <p>We're a growing team of builders who care about making health information understandable for everyone — no medical dictionary required.</p>
+    </div>
+    <div class="about-card">
+      <h3 style="color:var(--navy);margin-bottom:1rem">TechMed is built for people who want:</h3>
+      <ul>
+        <li><strong>Accessible health guidance</strong> — check symptoms easily, anytime, anywhere</li>
+        <li><strong>Clear, understandable insights</strong> — less confusion, more actionable next steps</li>
+        <li><strong>Better-informed conversations</strong> — arrive at appointments already understanding your concerns</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT WE DO ================= -->
+<section class="pillars" id="what-we-do">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">What we do</span>
+      <h2>From symptoms to clarity, end-to-end</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">📝</div>
+        <h3>Describe</h3>
+        <p>Users explain their symptoms in plain, everyday language — no forms full of jargon, no guessing what a term means.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Analyze</h3>
+        <p>Our AI helps organize and interpret what's described, surfacing the information that matters most.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💡</div>
+        <h3>Understand</h3>
+        <p>Clear, readable insights patients can bring to a healthcare provider — so the conversation starts informed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPONSORS ================= -->
+<section class="sponsors" id="sponsors">
+  <div class="container">
+    <span class="eyebrow">Sponsors</span>
+    <h2>Our future partners</h2>
+    <p class="sub">We're just getting started — and these spots are waiting for organizations that believe accessible health technology matters.</p>
+    <div class="sponsor-grid" aria-label="Sponsor placeholders">
+      <div class="sponsor-slot">Your logo here</div>
+      <div class="sponsor-slot">Your logo here</div>
+      <div class="sponsor-slot">Your logo here</div>
+      <div class="sponsor-slot">Your logo here</div>
+    </div>
+    <div class="sponsor-cta">
+      <h3>Interested in sponsoring TechMed?</h3>
+      <p>Support an early-stage health-tech project and put your brand behind accessible, AI-powered patient education. We'd love to talk.</p>
+      <a class="btn btn-light" href="mailto:yutechmed@gmail.com?subject=Sponsoring%20TechMed">Email us about sponsorship</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOIN / FORM ================= -->
+<section class="join" id="join">
+  <div class="container join-grid">
+    <div>
+      <span class="eyebrow">Get involved</span>
+      <h2>Want to be part of TechMed?</h2>
+      <p>Whether you code, design, write, research, or just care about making healthcare easier to understand — there's a place for you. Fill out the form and we'll get back to you.</p>
+      <p><strong>What happens next?</strong> Your submission lands straight in our inbox, and we'll reach out with next steps.</p>
+    </div>
+
+    <!-- Replace YOUR_FORM_ID after creating a free form at formspree.io -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" type="text" name="name" required placeholder="Jane Doe">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="role">How would you like to get involved?</label>
+        <select id="role" name="interest" required>
+          <option value="" disabled selected>Choose one…</option>
+          <option>Become a member (developer)</option>
+          <option>Become a member (design / content)</option>
+          <option>Become a member (health / research)</option>
+          <option>Volunteer / general help</option>
+          <option>Sponsorship</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Tell us a bit about yourself</label>
+        <textarea id="message" name="message" placeholder="Skills, interests, why TechMed…"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%">Send my application</button>
+      <p class="form-note">Submissions are delivered to the TechMed team at yutechmed@gmail.com.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions, answered</h2>
+    </div>
+    <details>
+      <summary>What is TechMed?</summary>
+      <div>TechMed is an accessible, AI-powered symptom-checking application that helps patients better understand their health concerns before they see a healthcare provider.</div>
+    </details>
+    <details>
+      <summary>Is TechMed a replacement for a doctor?</summary>
+      <div>No. TechMed helps you understand and organize your symptoms, but it is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider.</div>
+    </details>
+    <details>
+      <summary>Who can join the team?</summary>
+      <div>Anyone! Developers, designers, writers, researchers, and people passionate about health accessibility are all welcome. Fill out the Get Involved form and we'll be in touch.</div>
+    </details>
+    <details>
+      <summary>Do I need a medical or coding background?</summary>
+      <div>Not at all. There are roles across development, design, content, outreach, and research — enthusiasm and reliability matter most.</div>
+    </details>
+    <details>
+      <summary>How can my organization sponsor TechMed?</summary>
+      <div>Email us at <a href="mailto:yutechmed@gmail.com">yutechmed@gmail.com</a> with the subject "Sponsoring TechMed" and we'll share how you can support the project.</div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="techmed-logo.png" alt=""><span>TechMed</span></div>
+        <p>Accessible, AI-powered symptom checking — helping patients understand their health concerns.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#what-we-do">What we do</a></li>
+          <li><a href="#sponsors">Sponsors</a></li>
+          <li><a href="#join">Get involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:yutechmed@gmail.com">yutechmed@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/company/yu-techmed/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/Shiva-Deh/TechMed" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copyright">© 2026 TechMed. Made with care for accessible healthcare.</p>
+  </div>
+</footer>
+
+</body>
+</html>
